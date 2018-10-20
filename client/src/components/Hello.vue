@@ -1,6 +1,7 @@
 <template>
   <div>
-    {{msg}}
+    <span>{{msg}}</span>
+    <div class="icon-time"></div>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+@import '../assets/sprite.css';
 .even {
   color: red;
 }
