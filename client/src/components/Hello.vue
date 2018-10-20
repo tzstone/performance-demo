@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>{{msg}}</span>
-    <div class="icon-time"></div>
+    <div class="icon icon-time"></div>
   </div>
 </template>
 

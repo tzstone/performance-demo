@@ -10,6 +10,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SpritesmithPlugin = require('webpack-spritesmith')
 
+// purifycss
+const glob = require('glob-all')
+const PurifyCSSPlugin = require('purifycss-webpack')
+
 var env =
   process.env.NODE_ENV === 'testing'
     ? require('../config/test.env')
@@ -45,6 +49,18 @@ var webpackConfig = merge(baseWebpackConfig, {
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
+
+    // remove unused CSS styles
+    // Make sure this is after ExtractTextPlugin!
+    new PurifyCSSPlugin({
+      paths: glob.sync([
+        path.join(__dirname, '../index.html'),
+        path.join(__dirname, '../src/**/*.vue')
+      ]),
+      moduleExtensions: ['.vue'],
+      minimize: true
+    }),
+
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
