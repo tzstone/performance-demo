@@ -10,6 +10,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SpritesmithPlugin = require('webpack-spritesmith')
 
+var SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin')
+
 // purifycss
 const glob = require('glob-all')
 const PurifyCSSPlugin = require('purifycss-webpack')
@@ -45,6 +47,16 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       sourceMap: true
     }),
+
+    // 骨架屏
+    new SkeletonWebpackPlugin({
+      webpackConfig: {
+        entry: {
+          app: path.join(__dirname, '../src/skeleton/entry-skeleton.js')
+        }
+      }
+    }),
+
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
