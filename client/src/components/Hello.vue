@@ -13,6 +13,7 @@ export default {
       msg: 'hello',
     }
   },
+  mounted() {},
   methods: {},
   components: {},
 }
@@ -21,6 +22,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 @import '../assets/sprite.css';
+</style>
+<style scoped>
 .even {
   color: red;
 }

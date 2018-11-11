@@ -32,18 +32,22 @@ var webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
     }),
+
+    // scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
+
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        drop_debugger: true,
-        drop_console: true
+        drop_debugger: true
+        // drop_console: true
       },
       sourceMap: true
     }),

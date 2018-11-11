@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Hello = () => import('@/components/Hello')
-const List = () => import('@/components/List')
+const Hello = () => import(/* webpackChunkName: "hello" */ '@/components/Hello')
+const List = () => import(/* webpackChunkName: "list" */ '@/components/List')
 import Skeleton from '@/skeleton/Skeleton.vue'
 
 Vue.use(Router)
